@@ -1,2 +1,2 @@
-hieradata/nodes/*.yaml
+hieradata/*.yaml
 manifests/nodes/*.pp
