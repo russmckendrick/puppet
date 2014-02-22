@@ -1,0 +1,50 @@
+{
+  "summary": "SaltStack module",
+  "project_page": "https://github.com/maxchk/puppet-salt",
+  "author": "maxchk",
+  "source": "UNKNOWN",
+  "types": [
+
+  ],
+  "name": "maxchk-salt",
+  "description": "Install, configure and manage SaltStack",
+  "license": "Apache License, Version 2.0",
+  "version": "0.0.4",
+  "checksums": {
+    "templates/minion.erb": "eba0a6aab65edf9fe21129831197cccc",
+    "files/make_template.sh": "da908e8aa322f94a5fbffb064ca8c39c",
+    "manifests/master/service.pp": "d37a20d8679ff493ca092e2a48bca0e7",
+    "spec/classes/repo_spec.rb": "e95c91f74ca9c703a335241c73bac1ea",
+    "manifests/repo/deb.pp": "3e05f9c345240f8b0b1896745c0990bd",
+    "README.md": "ef977ad803251bd332a831a8dd22c82d",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "templates/master.erb": "f4ec3275fa64ccf309a24ecea2ed35d0",
+    "manifests/master/config.pp": "8f712feb956d2c63077640bcb24115ec",
+    "spec/classes/salt_init_spec.rb": "60b1c548d984a3ad29af75812fbe4b4b",
+    "Gemfile": "a751f53f81bdcf3d59a7e2dc92f1640f",
+    "tests/minion-facter_include.pp": "630090a053c80fb5a4302b0cb341f65d",
+    "manifests/minion/install.pp": "af0100225bdade0df00b0ad9ee652f7c",
+    "manifests/minion/config.pp": "a3ca24d4b0d20348996efd984f73af6d",
+    "manifests/master.pp": "096f8481d3db9452c5480ea8886711f6",
+    "Modulefile": "11fa993bda94b8dd699c12d161a10ec9",
+    "tests/master.pp": "a7d3b786dd2363bba3195a60a20503bc",
+    "LICENSE": "0e5ccf641e613489e66aa98271dbe798",
+    "manifests/repo/rpm.pp": "6688a7b2f98a53e1f0b106eb7669cddd",
+    "HOWTO": "c28caf4ebba673b16d16d52f81287e84",
+    "spec/spec_helper.rb": "792eeb7aa7edafb93e2bc1d27c5e75c5",
+    "script/bootstrap": "071f35b0443fe3f8f5f7d21072e0adba",
+    "tests/minion.pp": "6b3f8f27602336aea64770e606d9efa4",
+    "manifests/minion.pp": "f90a7264e755b69596a1fe158b4beddf",
+    "manifests/init.pp": "a0bea191ee17740508764c9704764a62",
+    "manifests/repo.pp": "a3d3a5bb3a5d91e0511de139548ed946",
+    "script/cibuild": "9f9c467bcbdbc237f5f02af1f4bc2b4e",
+    "manifests/minion/service.pp": "4dd933486848251eb538fa131bae15a8",
+    "manifests/master/install.pp": "61c4ab9336803728444af2ceae028ffd",
+    "templates/grains.erb": "4ac2e702c3043f8496616a493fd12b39",
+    "tests/init.pp": "b269357486417d3c172f79429584b508",
+    "manifests/defaults.pp": "3a9fe14ee5d742ddb606c6c96f913f8b"
+  },
+  "dependencies": [
+
+  ]
+}

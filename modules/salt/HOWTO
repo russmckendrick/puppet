@@ -1,0 +1,44 @@
+## HOWTO: running SaltStack
+
+   Why would try SoltStack if you are already using Puppet?  
+   If you get to this page there might be a reason, I guess.  
+   This HOWTO shows how to have Salt up and running within minutes  
+   with a help of this Puppet module.  
+   (tested on Ubuntu and CentOS)  
+
+   1. Make sure you've setup salt repository.  
+   For RHEL / CentOS / Scientific Linux / Amazon Linux / Oracle Linux:  
+   if you have EPEL enabled, you need to do nothing.  
+   For Ubuntu and Debian you would need to add saltstack repository.  
+   For others, check details on SaltStack installation.  
+   
+   2. Install this module.  
+
+   3. Add following code into manifests for the host which will act as Salt Master:  
+   *(I have it on the same server where MCollective runs)*  
+
+    class {'::salt':
+      master        => true,
+      minion_master => 'your.salt.server.name',
+    }
+
+   Alternatively you can set internal DNS to resolve the name 'salt' to the Salt Master IP.  
+
+   4. Add following code into manifests for servers where you want to pilot Salt:  
+
+    class {'::salt':
+      minion_master => 'your.salt.server.name',
+    }
+
+   5. Let Puppet do the job.  
+
+   6. Accept keys on a Master.
+
+    salt-key -L
+    salt-key -A
+
+   7. If all goes well. You are done.  
+
+   What's next?   
+   But I can only show you the door. You're the one that has to walk through it.  
+   *Morpheus, The Matrix*  
