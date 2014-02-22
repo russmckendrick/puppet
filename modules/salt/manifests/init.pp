@@ -1,6 +1,6 @@
 class salt {
 
-	require salt::params
+	$saltmaster  = 'salt.somedomain.com';
 
 # Install the package and make sure its running
 
