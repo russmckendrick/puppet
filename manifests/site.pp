@@ -1,2 +1,3 @@
 #nodes
-import "nodes.pp"
+import "default.pp"
+import "nodes/*.pp"
