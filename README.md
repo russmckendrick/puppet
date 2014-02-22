@@ -1,6 +1,12 @@
 # Puppet
-
 This is my standard Puppet Setup. It adds the following;
+
+## Installation
+This configuration replaces the standard configuration which you get when you run;
+
+```bash
+curl -fsS https://raw2.github.com/russmckendrick/puppet-install/master/install | bash
+```
 
 ## Common Module
 Base setup for each server
