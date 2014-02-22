@@ -1,0 +1,26 @@
+{
+  "name": "saz-motd",
+  "version": "2.1.0",
+  "source": "UNKNOWN",
+  "author": "saz",
+  "license": "Apache License, Version 2.0",
+  "summary": "UNKNOWN",
+  "description": "Manage \"Message Of The Day\" via Puppet",
+  "project_page": "https://github.com/saz/puppet-motd",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "3dadf3520b560958d8b52e9da3836c55",
+    "README.md": "2025c1d9801a738f3c14ae25e258172a",
+    "manifests/init.pp": "495671a396b89b0b8cab06dc32303a1c",
+    "manifests/params.pp": "bcd3a37d5b82f8f856c38f98b29c40a5",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "ca19ec4f451ebc7fdb035b52eae6e909",
+    "templates/motd.erb": "0556a6221848fc86359552021a391572",
+    "tests/init.pp": "5086992bfbe4109aef08a6dc91736250"
+  }
+}
