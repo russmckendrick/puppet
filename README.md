@@ -1,4 +1,3 @@
-puppet
-======
+# Puppet
 
-My Puppet Server configuration
+This is my standard Puppet Setup. It adds the following;
