@@ -4,9 +4,7 @@ This is my standard Puppet Setup.
 ## Installation
 This replaces the standard configuration which you get when you run;
 
-```bash
-curl -fsS https://raw2.github.com/russmckendrick/puppet-install/master/install | bash
-```
+`curl -fsS https://raw2.github.com/russmckendrick/puppet-install/master/install | bash`
 
 ## Common Module
 Base setup for each server
