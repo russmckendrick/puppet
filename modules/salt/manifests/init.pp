@@ -1,5 +1,7 @@
 class salt {
 
+	require salt::params
+
 # Install the package and make sure its running
 
 	package { "salt-minion":
@@ -9,15 +11,16 @@ class salt {
 
 # Put our own minion file in place
 
-	file { "/etc/salt/minion":
-	owner   => "root",
+  file { 'minion':
+    path    => "/etc/salt/minion",
+    content => template('salt/minion.erb'),
+    owner   => "root",
 	group   => "root",
 	mode    => 600,
 	replace => true,
-	source  => "puppet:///modules/salt/minion",
 	require => Package["salt-minion"],
     notify  => Service["salt-minion"]	
-	}
+  }
 
 # Start the service
 
@@ -30,7 +33,6 @@ class salt {
 
 }
 
-
 class salt::master {
 
 # Install the package and make sure its running
@@ -42,15 +44,16 @@ class salt::master {
 
 # Put our own master file in place
 
-	file { "/etc/salt/master":
-	owner   => "root",
+  file { 'master':
+    path    => "/etc/salt/master",
+    content => template('salt/master.erb'),
+    owner   => "root",
 	group   => "root",
 	mode    => 600,
 	replace => true,
-	source  => "puppet:///modules/salt/master",
 	require => Package["salt-master"],
     notify  => Service["salt-master"]	
-	}
+  }
 
 # Start the service
 
