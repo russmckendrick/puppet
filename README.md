@@ -20,5 +20,5 @@ Base setup for each server
 * [motd](https://github.com/saz/puppet-motd) - Adds the MOTD defined in the Common Module
 * [salt](https://github.com/maxchk/puppet-salt) - Module to manage Salt Stack
 * [fail2ban](puppet module install desalvo/fail2ban) - Fail2Ban module
-* [iptables]http://erwbgy.github.io/puppet-iptables/( - IPTables management)
+* [iptables](http://erwbgy.github.io/puppet-iptables/) - IPTables management
 * [timezone](https://github.com/BashtonLtd/puppet-timezone) - Manages the timezone of the server
