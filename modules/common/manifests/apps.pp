@@ -9,7 +9,6 @@ class common::apps {
       'man',
       'rsync',
       'tree',
-      'htop',
       'vim-enhanced',
       'git',
     ]:
