@@ -39,7 +39,7 @@ class fail2ban::params {
   $socket = '/var/run/fail2ban/fail2ban.sock'
 
   $ignoreip = ['127.0.0.1/8']
-  $bantime = '600'
+  $bantime = '86400'
   $findtime = '600'
   $maxretry = '5'
   $backend = 'auto'
