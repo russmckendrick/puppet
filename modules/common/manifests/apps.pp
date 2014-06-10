@@ -11,6 +11,7 @@ class common::apps {
       'tree',
       'vim-enhanced',
       'git',
+      'jwhois',
     ]:
     ensure => installed,
   }
