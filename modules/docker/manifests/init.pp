@@ -50,15 +50,19 @@
 #   Custom dns server address
 #   Defaults to undefined
 #
+# [*socket_group*]
+#   Group ownership of the unix control socket.
+#   Defaults to undefined
+#
 # [*extra_parameters*]
 #   Any extra parameters that should be passed to the docker daemon.
 #   Defaults to undefined
 #
 # [*proxy*]
-#   Will set the http_proxy and https_proxy env variables in /etc/sysconfig/docker (redhat/centos) or /etc/init/docker.conf (debian)
+#   Will set the http_proxy and https_proxy env variables in /etc/sysconfig/docker (redhat/centos) or /etc/default/docker (debian)
 #
 # [*no_proxy*]
-#   Will set the no_proxy variable in /etc/sysconfig/docker (redhat/centos) or /etc/init/docker.conf (debian)
+#   Will set the no_proxy variable in /etc/sysconfig/docker (redhat/centos) or /etc/default/docker (debian)
 #
 class docker(
   $version                     = $docker::params::version,
@@ -72,9 +76,11 @@ class docker(
   $root_dir                    = $docker::params::root_dir,
   $manage_kernel               = true,
   $dns                         = $docker::params::dns,
+  $socket_group                = $docker::params::socket_group,
   $extra_parameters            = undef,
   $proxy                       = $docker::params::proxy,
   $no_proxy                    = $docker::params::no_proxy,
+  $storage_driver              = $docker::params::storage_driver,
   $execdriver                  = $docker::params::execdriver,
 ) inherits docker::params {
 

@@ -4,7 +4,7 @@
 #
 define docker::run(
   $image,
-  $command,
+  $command = undef,
   $memory_limit = '0',
   $ports = [],
   $volumes = [],
@@ -19,12 +19,14 @@ define docker::run(
   $lxc_conf = [],
   $restart_service = true,
   $disable_network = false,
+  $privileged = false,
 ) {
-
   validate_re($image, '^[\S]*$')
   validate_re($title, '^[\S]*$')
   validate_re($memory_limit, '^[\d]*$')
-  validate_string($command)
+  if $command {
+    validate_string($command)
+  }
   if $username {
     validate_string($username)
   }
@@ -33,6 +35,7 @@ define docker::run(
   }
   validate_bool($running)
   validate_bool($disable_network)
+  validate_bool($privileged)
 
   $ports_array = any2array($ports)
   $volumes_array = any2array($volumes)
@@ -41,45 +44,50 @@ define docker::run(
   $links_array = any2array($links)
   $lxc_conf_array = any2array($lxc_conf)
 
+  $provider = $::operatingsystem ? {
+    'Ubuntu' => 'upstart',
+    default  => undef,
+  }
+
+  $notify = str2bool($restart_service) ? {
+    true    => Service["docker-${title}"],
+    default => undef,
+  }
+
   case $::osfamily {
     'Debian': {
       $initscript = "/etc/init/docker-${title}.conf"
-
-      $provider = $::operatingsystem ? {
-        'Ubuntu' => 'upstart',
-        default  => undef,
-      }
-
-      file { $initscript:
-        ensure  => present,
-        content => template('docker/etc/init/docker-run.conf.erb')
-      }
-
-      service { "docker-${title}":
-        ensure     => $running,
-        enable     => true,
-        hasstatus  => true,
-        hasrestart => true,
-        provider   => $provider,
-      }
+      $init_template = 'docker/etc/init/docker-run.conf.erb'
+      $hasstatus  = true
+      $hasrestart = false
+      $mode = '0644'
     }
     'RedHat': {
       $initscript = "/etc/init.d/docker-${title}"
-
-      file { $initscript:
-        ensure  => present,
-        content => template('docker/etc/init.d/docker-run.erb'),
-        mode    => '0755',
-      }
-
-      service { "docker-${title}":
-        ensure     => $running,
-        enable     => true,
-      }
+      $init_template = 'docker/etc/init.d/docker-run.erb'
+      $hasstatus  = undef
+      $hasrestart = undef
+      $mode = '0755'
     }
     default: {
       fail('Docker needs a RedHat or Debian based system.')
     }
+  }
+
+  file { $initscript:
+    ensure  => present,
+    content => template($init_template),
+    mode    => $mode,
+    notify  => $notify,
+  }
+
+  service { "docker-${title}":
+    ensure     => $running,
+    enable     => true,
+    hasstatus  => $hasstatus,
+    hasrestart => $hasrestart,
+    provider   => $provider,
+    require    => File[$initscript],
   }
 
   if str2bool($restart_service) {

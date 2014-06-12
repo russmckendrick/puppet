@@ -9,6 +9,9 @@
 # [*socket_bind*]
 #   Which local unix socket to bind the docker service to.
 #
+# [*socket_group*]
+#   Which local unix socket to bind the docker service to.
+#
 # [*root_dir*]
 #   Specify a non-standard root directory for docker.
 #
@@ -18,6 +21,7 @@
 class docker::service (
   $tcp_bind             = $docker::tcp_bind,
   $socket_bind          = $docker::socket_bind,
+  $socket_group         = $docker::socket_group,
   $service_state        = $docker::service_state,
   $service_enable       = $docker::service_enable,
   $root_dir             = $docker::root_dir,
@@ -25,35 +29,28 @@ class docker::service (
   $proxy                = $docker::proxy,
   $no_proxy             = $docker::no_proxy,
   $execdriver           = $docker::execdriver,
+  $storage_driver       = $docker::storage_driver,
 ){
   case $::osfamily {
     'Debian': {
+      $hasstatus     = true
+      $hasrestart    = false
 
-      $provider = $::operatingsystem ? {
-        'Ubuntu' => 'upstart',
-        default  => undef,
+      file { '/etc/init.d/docker':
+          ensure => 'absent',
+          notify => Service['docker'],
       }
 
-      service { 'docker':
-        ensure     => $service_state,
-        enable     => $service_enable,
-        hasstatus  => true,
-        hasrestart => true,
-        provider   => $provider,
-      }
-
-      file { '/etc/init/docker.conf':
+      file { '/etc/default/docker':
         ensure  => present,
         force   => true,
-        content => template('docker/etc/init/docker.conf.erb'),
+        content => template('docker/etc/default/docker.erb'),
         notify  => Service['docker'],
       }
     }
     'RedHat': {
-      service { 'docker':
-        ensure     => $service_state,
-        enable     => $service_enable,
-      }
+      $hasstatus     = undef
+      $hasrestart    = undef
 
       file { '/etc/sysconfig/docker':
         ensure  => present,
@@ -66,4 +63,18 @@ class docker::service (
       fail('Docker needs a RedHat or Debian based system.')
     }
   }
+
+  $provider = $::operatingsystem ? {
+    'Ubuntu' => 'upstart',
+    default  => undef,
+  }
+
+  service { 'docker':
+    ensure     => $service_state,
+    enable     => $service_enable,
+    hasstatus  => $hasstatus,
+    hasrestart => $hasrestart,
+    provider   => $provider,
+  }
+
 }
