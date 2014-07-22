@@ -1,11 +1,11 @@
-name    'kemra102-bashprofile'
-version '0.0.2'
-source 'https://github.com/kemra102/puppet_bashprofile'
-author 'kemra102'
-license 'BSD 2-Clause'
-summary 'This class manages options in the BASH profile'
-description 'This class manages options in the BASH profile'
-project_page 'https://github.com/kemra102/puppet_bashprofile'
+name    'cloudwatchlogs'
+version '0.0.1'
+source ''
+author 'cloudwatchlogs'
+license ''
+summary ''
+description ''
+project_page ''
 
 ## Add dependencies, if any:
-# dependency 'username/name', '>= 1.2.0'
+# 
