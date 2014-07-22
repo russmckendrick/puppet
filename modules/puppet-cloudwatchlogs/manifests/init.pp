@@ -1,15 +1,15 @@
 class cloudwatchlogs {
 
 (
-$cloudwatchlogs = [
+$cloudwatch = [
 {
 path => '/var/log/messages',
 },
+
 {
 path => '/var/log/secure',
 },
 ]
-
 ) 
 
 
