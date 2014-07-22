@@ -2,7 +2,7 @@ class cloudwatchlogs {
 
 file { '/root/test.conf':
 ensure	=> file,
-content	=> template('cloudwatchlogs/etc-profile.erb'),
+content	=> template('cloudwatchlogs/awslogs.erb'),
 owner	=> root,
 group	=> root,
 mode	=> 0644,
