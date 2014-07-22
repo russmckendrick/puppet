@@ -1,7 +1,5 @@
 class cloudwatchlogs {
 
-(
-
 $cloudwatchlogs = [
 {
 path => '/var/log/messages',
@@ -10,8 +8,6 @@ path => '/var/log/messages',
 path => '/var/log/secure',
 },
 ]
-
-) 
 
 file { '/root/test.conf':
 ensure	=> file,
