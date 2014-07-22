@@ -1,5 +1,7 @@
 class cloudwatchlogs {
 
+(
+
 $cloudwatchlogs = [
 {
 path => '/var/log/messages',
