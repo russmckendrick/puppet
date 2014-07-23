@@ -26,7 +26,7 @@ path => '/var/log/secure',
 
 	exec { 'cloudwatchlogs-wget':
 		command     => 'sudo /usr/bin/wget https://s3.amazonaws.com/aws-cloudwatch/downloads/awslogs-agent-setup-v1.0.py',
-		onlyif      => 'sudo /usr/bin/test -a /etc/cloudwatchlogs.conf'
+		onlyif      => 'sudo /usr/bin/test -a /etc/cloudwatchlogs.conf',
 		cwd         => '/usr/local/src/',
 		unless      => 'sudo /usr/bin/test -a /usr/local/src/awslogs-agent-setup-v1.0.py',
 		notify      => Exec['cloudwatchlogs-install'],
