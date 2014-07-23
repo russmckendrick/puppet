@@ -1,13 +1,17 @@
 class cloudwatchlogs {
 
-$cloudwatchlogs = [
-{
-path => '/var/log/messages',
-},
-{
-path => '/var/log/secure',
-},
-]
+# Set some defaults
+
+	$cloudwatchlogs = [
+		{
+			name => 'Messages',
+			path => '/var/log/messages',
+		},
+		{
+			name => 'Secure',
+			path => '/var/log/secure',
+		},
+	]
 
 
 # Create the configuration file
@@ -20,7 +24,6 @@ path => '/var/log/secure',
 		mode	=> 0644,
 		notify  => Exec['cloudwatchlogs-wget'],
 	}
-
 
 # Download and install the agent
 
