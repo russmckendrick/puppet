@@ -1,4 +1,6 @@
 class cloudwatchlogs {
+case $::operatingsystem {
+'Amazon': {
 
 # Set some defaults
 
@@ -13,6 +15,11 @@ class cloudwatchlogs {
 		},
 	]
 
+}
+}
+default: {
+fail("The ${module_name} module is not supported on ${::osfamily}/${::operatingsystem}.")
+}
 
 # Create the configuration file
 
