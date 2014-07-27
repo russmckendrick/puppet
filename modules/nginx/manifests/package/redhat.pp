@@ -47,7 +47,7 @@ class nginx::package::redhat (
       # no other dedicated dirs exist for platforms under $::osfamily == redhat
       if $manage_repo {
         yumrepo { 'nginx-release':
-          baseurl  => "http://nginx.org/packages/rhel/${os_rel}/\$basearch/",
+          baseurl  => "http://nginx.org/packages/centos/${os_rel}/\$basearch/",
           descr    => 'nginx repo',
           enabled  => '1',
           gpgcheck => '1',
