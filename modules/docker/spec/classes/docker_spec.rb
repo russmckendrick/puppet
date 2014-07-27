@@ -26,6 +26,11 @@ describe 'docker', :type => :class do
           it { should contain_package('docker').with_name('lxc-docker-0.5.5').with_ensure('present') }
         end
 
+        context 'when not managing the package' do
+          let(:params) { {'manage_package' => false } }
+          it { should_not contain_package('docker') }
+        end
+
         context 'with no upstream package source' do
           let(:params) { {'use_upstream_package_source' => false } }
           it { should_not contain_apt__source('docker') }
@@ -93,6 +98,17 @@ describe 'docker', :type => :class do
       context 'without execdriver param' do
         it { should_not contain_file(service_config_file).with_content(/-e lxc/) }
         it { should_not contain_file(service_config_file).with_content(/-e native/) }
+      end
+
+      context 'with multi extra parameters' do
+        let(:params) { {'extra_parameters' => ['--this this', '--that that'] } }
+        it { should contain_file(service_config_file).with_content(/--this this/) }
+        it { should contain_file(service_config_file).with_content(/--that that/) }
+      end
+
+      context 'with a string extra parameters' do
+        let(:params) { {'extra_parameters' => '--this this' } }
+        it { should contain_file(service_config_file).with_content(/--this this/) }
       end
 
       context 'with socket group set' do

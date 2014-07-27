@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'apt::pin define' do
+describe 'apt::pin define', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   context 'defaults' do
     it 'should work with no errors' do
       pp = <<-EOS
@@ -91,6 +91,26 @@ describe 'apt::pin define' do
         it { should contain 'Pin: release a=vim-puppet' }
       end
     end
+
+    context 'array' do
+      it 'should work with no errors' do
+        pp = <<-EOS
+        include apt
+        apt::pin { 'array':
+          ensure   => present,
+          packages => ['apache', 'ntop'],
+        }
+        EOS
+
+        apply_manifest(pp, :catch_failures => true)
+      end
+
+      describe file('/etc/apt/preferences.d/array.pref') do
+        it { should be_file }
+        it { should contain 'Package: apache ntop' }
+        it { should contain 'Pin: release a=array' }
+      end
+    end
   end
 
   context 'release' do
@@ -130,7 +150,7 @@ describe 'apt::pin define' do
 
       describe file('/etc/apt/preferences.d/vim-puppet.pref') do
         it { should be_file }
-        it { should contain 'Pin: origin "testrelease"' }
+        it { should contain 'Pin: origin testrelease' }
       end
     end
   end

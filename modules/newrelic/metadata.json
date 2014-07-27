@@ -1,6 +1,6 @@
 {
   "name": "fsalum-newrelic",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "source": "git://github.com/fsalum/puppet-newrelic.git",
   "author": "Felipe Salum",
   "license": "Apache License, Version 2.0",
@@ -10,27 +10,36 @@
   "dependencies": [
     {
       "name": "puppetlabs/apt",
-      "version_requirement": ">= 0.0.4"
+      "version_requirement": ">= 1.5.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.1.0"
     }
   ],
   "types": [
 
   ],
   "checksums": {
-    "CHANGELOG": "3975f2673017f113eb6efce09dccea6d",
+    "CHANGELOG": "000d83a470886a29e6628b7f07e4cdc8",
     "Gemfile": "7c7684e8c8d675f1061e40a3e1d9236d",
-    "Gemfile.lock": "183961a8885783a5f617da58b8d3b8d1",
-    "Modulefile": "b9f6f56f8b0c9b5a991738b825d500d6",
-    "README.md": "a710e86f0be30b2395cc710893de4ff8",
+    "Gemfile.lock": "9e2113cbe27b6b19ce0a24cbab0148d3",
+    "LICENSE": "1b27ef6006a261242c6c077d3ac2f13f",
+    "Modulefile": "548b040dcc54f67998e030b1313c06f7",
+    "README.md": "bf4f338777db8e19672d2fb8988a9713",
     "Rakefile": "25325f7a133aff637f3bea5e272bce74",
+    "Vagrantfile": "7e89b53df7b0496b922d231866488f39",
+    "key": "cf38510700f07897ea0f7f295297594a",
     "manifests/init.pp": "972a81c6768488c9a5c0ca09b3f62f7c",
-    "manifests/params.pp": "76112ce9e3c023cdebdee73bde708237",
-    "manifests/php.pp": "2c2482829aae5e6d3d6d70191403f6aa",
-    "manifests/server.pp": "b3a11103f7ec5de778c7aa197b39a3d6",
+    "manifests/params.pp": "ce21867b6b36d00197483ce52a67b5ed",
+    "manifests/php/newrelic_ini.pp": "1a1f1e9bcdfbc13b23875264c4938d1e",
+    "manifests/php.pp": "7594d9dcd7ad79f88acdc480164dd5ba",
+    "manifests/server.pp": "c69bb3389a86efbbb0f17bfd6c202842",
     "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
-    "templates/newrelic.cfg.erb": "e2fcb27c5d9d5f45263afa404fdd1aa6",
-    "templates/newrelic.ini.erb": "43cddb5c301eea369711d86c6085b020",
+    "templates/newrelic.cfg.erb": "ed7dae80cfaec15fa7147801e52ff779",
+    "templates/newrelic.ini.erb": "c999940298cabcc6bd638b22977e1073",
+    "templates/nrsysmond.cfg.erb": "e453a640686b97a7406344bcc186e4bc",
     "tests/init.pp": "052f5aaef655186e585b2e13eae151d0",
-    "tests/php.pp": "d81b5f17c77f4fc1ac9cf657d370a0aa"
+    "tests/php.pp": "5d0c4da10501f6a678eb4bae3e17ce6e"
   }
 }

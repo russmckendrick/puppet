@@ -1,10 +1,10 @@
 # ppa.pp
 
 define apt::ppa(
+  $ensure  = 'present',
   $release = $::lsbdistcodename,
-  $options = '-y'
+  $options = $apt::params::ppa_options,
 ) {
-  $ensure  = 'present'
   include apt::params
   include apt::update
 
@@ -15,7 +15,7 @@ define apt::ppa(
   }
 
   if $::operatingsystem != 'Ubuntu' {
-    fail("apt::ppa is currently supported on Ubuntu only.")
+    fail('apt::ppa is currently supported on Ubuntu only.')
   }
 
   $filename_without_slashes = regsubst($name, '/', '-', 'G')
@@ -67,6 +67,9 @@ define apt::ppa(
 
     file { "${sources_list_d}/${sources_list_d_filename}":
         ensure => 'absent',
+        mode   => '0644',
+        owner  => 'root',
+        group  => 'root',
         notify => Exec['apt_update'],
     }
   }

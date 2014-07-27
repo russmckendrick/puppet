@@ -2,22 +2,28 @@ require 'beaker-rspec'
 
 def iptables_flush_all_tables
   ['filter', 'nat', 'mangle', 'raw'].each do |t|
-    expect(shell("/sbin/iptables -t #{t} -F").stderr).to eq("")
+    expect(shell("iptables -t #{t} -F").stderr).to eq("")
   end
 end
 
 def ip6tables_flush_all_tables
   ['filter'].each do |t|
-    expect(shell("/sbin/ip6tables -t #{t} -F").stderr).to eq("")
+    expect(shell("ip6tables -t #{t} -F").stderr).to eq("")
   end
 end
 
-hosts.each do |host|
-  # Install Puppet
-  install_package host, 'rubygems'
-  on host, 'gem install puppet --no-ri --no-rdoc'
-  on host, "mkdir -p #{host['distmoduledir']}"
+unless ENV['RS_PROVISION'] == 'no' or ENV['BEAKER_provision'] == 'no'
+  if hosts.first.is_pe?
+    install_pe
+  else
+    install_puppet
+  end
+  hosts.each do |host|
+    on host, "mkdir -p #{host['distmoduledir']}"
+  end
 end
+
+UNSUPPORTED_PLATFORMS = ['windows','Solaris','Darwin']
 
 RSpec.configure do |c|
   # Project root
