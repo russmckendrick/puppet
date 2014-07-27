@@ -48,11 +48,10 @@ included with EPEL release, this will not have them.
 * This is commonly used on Puppet Enterprise 3.x
 * This was tested using Puppet 3.3.0 on Centos5/6
 * This was tested using Puppet 3.1.1 on Amazon's AWS Linux
-* I assume it will work on any RHEL variant
+* I assume it will work on any RHEL variant (Amazon Linux is debatable as a variant)
 
 # Lifecycle
 * No functionality has been introduced that should break Puppet 2.6 or 2.7, but I am no longer testing these versions of Puppet as they are end-of-lifed from Puppet Labs.
-* RHEL 7 beta is out. Once EPEL 7 beta is out, I'll be testing/updating this module as well.
 
 ## Unit tests
 
@@ -88,3 +87,4 @@ Apache Software License 2.0
   *  Trey Dockendorf <treydock@gmail.com>
   *  Troy Bollinger <troy@us.ibm.com>
   *  Vlastimil Holer <holer@ics.muni.cz>
+  *  Ewoud Kohl van Wijngaarden <e.kohlvanwijngaarden@oxilion.nl>

@@ -4,7 +4,8 @@
 #   Configure the proper repositories and import GPG keys
 #
 # Reqiures:
-#   You should probably be on an Enterprise Linux variant. (Centos, RHEL, Scientific, Oracle, Ascendos, et al)
+#   You should probably be on an Enterprise Linux variant. (Centos, RHEL,
+#   Scientific, Oracle, Ascendos, et al)
 #
 # Sample Usage:
 #  include epel
@@ -53,7 +54,7 @@ class epel (
       enabled        => $epel_testing_enabled,
       gpgcheck       => $epel_testing_gpgcheck,
       gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${::os_maj_version}",
-      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - Testing - ${::architecture} ",
+      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - Testing - \$basearch ",
     }
 
     yumrepo { 'epel-testing-debuginfo':
@@ -63,7 +64,7 @@ class epel (
       enabled        => $epel_testing_debuginfo_enabled,
       gpgcheck       => $epel_testing_debuginfo_gpgcheck,
       gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${::os_maj_version}",
-      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - Testing - ${::architecture} - Debug",
+      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - Testing - \$basearch - Debug",
     }
 
     yumrepo { 'epel-testing-source':
@@ -73,7 +74,7 @@ class epel (
       enabled        => $epel_testing_source_enabled,
       gpgcheck       => $epel_testing_source_gpgcheck,
       gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${::os_maj_version}",
-      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - Testing - ${::architecture} - Source",
+      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - Testing - \$basearch - Source",
     }
 
     yumrepo { 'epel':
@@ -84,7 +85,7 @@ class epel (
       enabled        => $epel_enabled,
       gpgcheck       => $epel_gpgcheck,
       gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${::os_maj_version}",
-      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - ${::architecture}",
+      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - \$basearch",
     }
 
     yumrepo { 'epel-debuginfo':
@@ -95,7 +96,7 @@ class epel (
       enabled        => $epel_debuginfo_enabled,
       gpgcheck       => $epel_debuginfo_gpgcheck,
       gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${::os_maj_version}",
-      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - ${::architecture} - Debug",
+      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - \$basearch - Debug",
     }
 
     yumrepo { 'epel-source':
@@ -106,7 +107,7 @@ class epel (
       enabled        => $epel_source_enabled,
       gpgcheck       => $epel_source_gpgcheck,
       gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${::os_maj_version}",
-      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - ${::architecture} - Source",
+      descr          => "Extra Packages for Enterprise Linux ${::os_maj_version} - \$basearch - Source",
     }
 
     file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${::os_maj_version}":
