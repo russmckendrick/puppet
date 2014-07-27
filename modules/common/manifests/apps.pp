@@ -10,6 +10,7 @@ class common::apps {
       'vim-enhanced',
       'git',
       'whois',
+      'iptables-services',
     ]:
     ensure => installed,
   }
