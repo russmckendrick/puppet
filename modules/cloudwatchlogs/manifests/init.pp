@@ -1,27 +1,30 @@
 class cloudwatchlogs {
 
-case $::operatingsystem {
-'Amazon': {
+# Check the OS is Amazon Linux
 
-# Set some defaults
+	case $::operatingsystem {
 
-	$cloudwatchlogs = [
-		{
-			name => 'Messages',
-			path => '/var/log/messages',
-		},
-		{
-			name => 'Secure',
-			path => '/var/log/secure',
-		},
-	]
+	'Amazon': {
 
-}
+	# Set some defaults
 
-default: {
-fail("The ${module_name} module is not supported on ${::osfamily}/${::operatingsystem}.")
-}
-}
+			$cloudwatchlogs = [
+				{
+					name => 'Messages',
+					path => '/var/log/messages',
+				},
+				{
+					name => 'Secure',
+					path => '/var/log/secure',
+				},
+			]
+
+	}
+
+	default: {
+		fail("The ${module_name} module is not supported on ${::osfamily}/${::operatingsystem}.")
+		}
+	}
 
 # Create the configuration file
 
